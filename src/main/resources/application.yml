@@ -1,0 +1,33 @@
+server:
+  port: 9607
+  servlet:
+    context-path: /file_manager
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  hikari:
+    maximum-pool-size: 20         # 增大连接池大小
+    minimum-idle: 5               # 最小空闲连接
+    idle-timeout: 300000          # 连接空闲多久会被释放
+    max-lifetime: 600000          # 连接最大生命周期
+    connection-timeout: 30000     # 获取连接最大等待时间（默认 30s）
+    validation-timeout: 5000      # 校验连接的超时时间
+  datasource:
+    url: jdbc:mysql://localhost:3306/file_manager?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: zgm123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+  mvc:
+    static-path-pattern: /**
+
+file:
+  apk-path-temp: D:\\test\\file-temp    # 临时apk文件夹
+  apk-path: D:\\test\\apk-file          # apk存储文件夹

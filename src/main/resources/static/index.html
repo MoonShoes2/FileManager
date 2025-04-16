@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link href="layui-v2.9.20/layui/css/layui.css" rel="stylesheet">
+		<script src="layui-v2.9.20/layui/layui.js"></script>
+		<script src="js/login.js"></script>
+	</head>
+	<body>
+		<form class="form_login">
+			<img src="img/lbxx.png" alt="头像" style="width: 27%;border-radius: 50%;">
+			<p style="font-size: 25px;margin: 4vh 0;">欢迎回来</p>
+			<div class="input_line">
+				<i class="layui-icon layui-icon-username"></i>
+				<input type="text" placeholder="用户名" />
+			</div>
+			<div class="input_line">
+				<i class="layui-icon layui-icon-password"></i>
+				<input type="password" placeholder="密码" />
+			</div>
+			<span class="btn_login" onclick="login()">登录</span>
+			<p style="margin-top: 3vh;">没有账号？点击<a href="#" style="margin: 0 5px;color: blue;">注册</a></p>
+		</form>
+	</body>
+</html>

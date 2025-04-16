@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>安装包文件</title>
+		<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<link rel="stylesheet" href="css/appManager.css">
+	</head>
+	<body>
+		<h2 class="page_title">上传</h2>
+		<div id="upload_file">
+			<el-collapse-transition name="el-fade-in">
+				<div class="upload_box" v-show="percent<100">
+					<el-upload drag action="" :http-request="upload" multiple :on-progress="uploading" :limit="1"
+						:show-file-list="false" :disabled="percent!=0">
+						<i class="el-icon-upload" v-if="percent==0"></i>
+						<div class="el-upload__text" v-if="percent==0">将文件拖到此处，或<em>点击上传</em></div>
+						<p class="upload_percent" v-if="percent!=0">{{percent}}%</p>
+					</el-upload>
+					<el-progress :percentage="percent" :color="percentType" style="width: 114%;"></el-progress>
+				</div>
+			</el-collapse-transition>
+			<br>
+			<el-collapse-transition name="el-fade-in">
+				<div v-show="percent==100" style="width: 600px;">
+					<img :src="form.icon" :alt="form.icon" style="vertical-align: top;width: 80px;" />
+					<span class="icon_info">
+						<span style="font-size: 20px;">{{form.name}}（{{form.size}}）</span><br>
+						<span>版本：{{form.versionName}}（build：{{form.versionCode}}）<i
+								style="font-size: 12px;">packageid:{{form.packageId}}</i></span>
+					</span>
+					<div style="height: 20px;"></div>
+					<el-form ref="form" :model="form" label-width="80px">
+						<el-form-item label="所属项目">
+							<el-input v-model="fileGroupInfo.projectName" disabled></el-input>
+						</el-form-item>
+						<el-form-item label="当前版本">
+							<el-input v-model="fileGroupInfo.latestVersion" disabled></el-input>
+						</el-form-item>
+						<el-form-item label="发布时间">
+							<el-radio-group v-model="form.publishMoment">
+								<el-radio :label="0">立即发布</el-radio>
+								<el-radio :label="1">定时发布</el-radio>
+							</el-radio-group>
+						</el-form-item>
+						<el-collapse-transition name="el-fade-in-linear">
+							<div v-show="form.publishMoment==1">
+								<el-form-item label="发布时间">
+									<el-col :span="11.5">
+										<el-date-picker type="date" placeholder="选择日期" v-model="form.publistDate"
+											style="width: 100%;"></el-date-picker>
+									</el-col>
+									<el-col :span="11.5" style="margin-left: 44px;">
+										<el-time-picker placeholder="选择时间" v-model="form.publistTime"
+											style="width: 100%;"></el-time-picker>
+									</el-col>
+								</el-form-item>
+							</div>
+						</el-collapse-transition>
+						<el-form-item label="提交说明">
+							<el-input type="textarea" v-model="form.mome"></el-input>
+						</el-form-item>
+						<el-form-item>
+							<el-button type="primary" @click="onSubmit">立即发布</el-button>
+							<el-button  @click="cancel">取消</el-button>
+						</el-form-item>
+					</el-form>
+				</div>
+			</el-collapse-transition>
+		</div>
+		<h2 class="page_title">下载</h2>
+		<div id="download_file">
+			<div class="apk_card" onclick="window.location.href='http://127.0.0.1:9607/FileManager/appFile'">
+				<img src="../../img/App_Logo.png" alt="" /><span>蘑菇云TMS系统</span>
+			</div>
+			<div class="apk_card">
+				<img src="img/App_Logo.png" alt="" />
+			</div>
+			<div class="apk_card">
+				<img src="img/App_Logo.png" alt="" />
+			</div>
+			<div class="apk_card">
+				<img src="img/App_Logo.png" alt="" />
+			</div>
+		</div>
+		<script src="../../js/tool.js"></script>
+		<script src="js/appManager.js"></script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>面板</title>
+		<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+		<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			.my_box {
+				width: 500px;
+				height: 300px;
+				display: inline-block;
+				vertical-align: top;
+				margin-right: 50px;
+				box-shadow: 1px 1px 1px #888;
+				transition: box-shadow 0.2s ease-out;
+			}
+
+			.my_box:hover {
+				box-shadow: 5px 5px 10px #888;
+			}
+
+			.my_box p {
+				text-indent: 1em;
+				line-height: 25px;
+				font-size: 15px;
+			}
+
+			#box_file_count,
+			#box_download_count {
+				width: 500px;
+				height: calc(100% - 0px);
+			}
+
+			.title_1 {
+				font-size: 20px;
+				line-height: 25px;
+				font-weight: bold;
+			}
+
+			.logs_scroll {
+				height: calc(100% - 25px);
+				overflow: scroll;
+			}
+			
+			.logs_scroll::-webkit-scrollbar {
+			  display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my_box">
+			<div id="box_file_count" style=""></div>
+		</div>
+		<div class="my_box">
+			<div id="box_download_count" style=""></div>
+		</div>
+		<div class="my_box">
+			<div class="title_1">上传日志</div>
+			<div class="logs_scroll">
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+				<p>梁晓飞 在 2024-12-20 12:00:00 上传了 <a href="#">scm(3.0.2)</a></p>
+			</div>
+		</div>
+		<script src="pages/panel/js/panel.js" type="text/javascript"></script>
+	</body>
+</html>

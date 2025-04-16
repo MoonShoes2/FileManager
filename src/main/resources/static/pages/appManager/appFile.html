@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>app文件页面</title>
+		<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+		<script src="js/qrcode.js"></script>
+		<style>
+			* {
+				box-sizing: border-box;
+				/* 包括padding和border在内计算元素宽高 */
+				margin: 0;
+				/* 去除默认外边距 */
+				padding: 0;
+				/* 去除默认内边距 */
+			}
+
+			.app_info img {
+				width: 100px;
+				height: 100px;
+				vertical-align: top;
+				margin-right: 15px;
+			}
+
+			.app_info_text {
+				display: inline-block;
+				line-height: 33.3px;
+			}
+
+			.app_info_text_title {
+				font-weight: bold;
+			}
+
+			.app_info_memo {
+				border: 1px solid #C0C4CC;
+				border-radius: 10px;
+				margin-top: 10px;
+				font-size: 15px;
+				min-height: 80px;
+				padding: 5px;
+			}
+
+			#qrcode {
+				position: relative;
+				width: 128px;
+				height: 128px;
+			}
+
+			.qrcode_logo {
+				position: absolute;
+				display: block;
+				width: 30px;
+				height: 30px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 10%;
+				background-color: white;
+			}
+
+			#qrcode_version {
+				line-height: 30px;
+			}
+
+			#qrcode_box {
+				display: inline-block;
+			}
+
+			.more_options {
+				line-height: 40px;
+				cursor: pointer;
+				display: block;
+			}
+
+			.more_options:hover {
+				background-color: rgb(245, 247, 250);
+			}
+
+			main {
+				padding: 10px 15px;
+			}
+
+			.history_memo {
+				line-height: 14px;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<main id="main">
+			<el-button round onclick="window.history.back()" style="margin-bottom: 10px;">返回</el-button>
+			<div class="app_info">
+				<img src="img/App_Logo.png" alt="">
+				<span class="app_info_text">
+					<div style="font-size: 20px;font-weight: bold">蘑菇云TMS</div>
+					<div><span class="app_info_text_title">版本号：</span>2.1.0</div>
+					<div><span class="app_info_text_title">Package ID：</span>uni.asdfsad</div>
+				</span>
+				<div class="app_info_memo">中工美运输系统</div>
+			</div>
+			<el-divider content-position="left">下载</el-divider>
+			<div>
+				<div id="qrcode_box" style="text-align: center;width: 128px;vertical-align: top;">
+					<div id="qrcode"><img :src="src" alt="Logo" class="qrcode_logo"></div>
+					<span id="qrcode_version">tms_2.0.1.apk</span>
+				</div>
+				<i class="el-icon-document-copy" style="cursor: pointer;margin-left: 20px;">复制链接</i>
+			</div>
+			<el-divider content-position="left">版本列表</el-divider>
+			<el-table :data="tableData" style="width: 100%">
+				<el-table-column prop="version" label="版本"></el-table-column>
+				<el-table-column prop="user" label="Build"></el-table-column>
+				<el-table-column prop="size" label="大小"></el-table-column>
+				<el-table-column prop="downCount" label="下载次数"></el-table-column>
+				<el-table-column prop="time" label="更新时间"></el-table-column>
+				<el-table-column label="操作">
+					<el-popover placement="right" width="150" trigger="click">
+						<span>
+							<div></div>
+							<p class="more_options">版本二维码</p>
+						</span>
+						<i class="el-icon-arrow-down" slot="reference"></i>
+					</el-popover>
+				</el-table-column>
+			</el-table>
+			<el-link type="primary" @click="dialogTableVisible=true">更多版本</el-link>
+			<el-dialog title="提交记录" :visible.sync="dialogTableVisible">
+				<div class="block" style="margin-bottom: 10px;">
+					<span class="demonstration">时间范围：</span>
+					<el-date-picker v-model="value1" type="datetimerange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+					</el-date-picker>
+					<el-button type="primary" round>确定</el-button>
+				</div>
+				<el-timeline>
+					<el-timeline-item timestamp="2024-12-20 12:15:15" placement="top" icon="el-icon-circle-check" color="skyblue">
+						<h4>梁晓飞 -> <el-link type="primary">2.0.16</el-link></h4>
+						<span class="history_memo">修复了某些已知的问题</span>
+					</el-timeline-item>
+					<el-timeline-item timestamp="2024-12-20 12:15:15" placement="top" icon="el-icon-circle-check">
+						<h4>梁晓飞 -> <el-link type="primary">2.0.16</el-link></h4>
+						<span class="history_memo">修复了某些已知的问题</span>
+					</el-timeline-item>
+					<el-timeline-item timestamp="2024-12-20 12:15:15" placement="top" icon="el-icon-circle-check">
+						<h4>梁晓飞 -> <el-link type="primary">2.0.16</el-link></h4>
+						<span class="history_memo">修复了某些已知的问题</span>
+					</el-timeline-item>
+				</el-timeline>
+			</el-dialog>
+		</main>
+	</body>
+	<script>
+		new Vue({
+			el: '#main',
+			data: function() {
+				return {
+					src: "img/App_Logo.png",
+					tableData: [{
+						version: '1.0.5',
+						user: '王小虎',
+						size: 15.5,
+						downCount: 189,
+						time: "2016-05-02"
+					}, {
+						version: '1.0.5',
+						user: '王小虎',
+						size: 15.5,
+						downCount: 189,
+						time: "2016-05-02"
+					}],
+					dialogTableVisible: false,
+					value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
+				}
+			},
+			mounted() {
+				this.qrcode() //画二维码
+				this.drawDivToCanvas(document.getElementById("qrcode_box")) //转为图片
+			},
+			methods: {
+				qrcode() {
+					var qrcode = new QRCode(document.getElementById("qrcode"), {
+						text: "http://218.28.142.106:9607/file/appDownLoad?fileName=yztms_test_1.0.3.apk",
+						width: 128,
+						height: 128,
+					});
+				},
+				// 将div转img
+				drawDivToCanvas(divElement) {
+					html2canvas(divElement, {
+						scale: 5
+					}).then(function(canvas) {
+						var image = canvas.toDataURL("image/png");
+						// 计算图片的原始宽度和高度
+						var originalWidth = canvas.width;
+						var originalHeight = canvas.height;
+						// 计算图片的高度，确保长宽比例不变
+						var newHeight = (originalHeight / originalWidth) * 128;
+						// 创建一个包含图片的 HTML 标签，并设置宽度和高度
+						var imgTag = '<img src="' + image + '" alt="转换后的图片" style="width: 128px; height: ' + newHeight + 'px;">';
+						// 将 divElement 的 innerHTML 设置为图片标签
+						divElement.innerHTML = imgTag;
+					});
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,63 @@
+.apk_card {
+	width: 150px;
+	height: 150px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	box-sizing: border-box;
+	transition: all 0.1s ease-out;
+	border: 1px solid #909399;
+	vertical-align: top;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 15px;
+}
+
+.apk_card:hover {
+	box-shadow: 1px 1px 1px lightgray;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+.apk_card img {
+	margin: 0 auto;
+	display: block;
+	width: 120px;
+}
+
+.page_title {
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.upload_box {
+	position: relative;
+	box-sizing: border-box;
+	transition: all 0.1s ease-out;
+	width: 364px;
+	height: 184px;
+	border: 2px dashed lightgray;
+}
+
+.upload_box:hover {
+	border: 2px dashed skyblue;
+}
+
+.el-upload-dragger {
+	border: none;
+}
+
+.upload_percent {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+}
+
+.icon_info {
+	margin-left: 30px;
+	display: inline-block;
+	line-height: 30px;
+	padding-top: 10px;
+}
